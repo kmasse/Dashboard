@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+﻿using Dashboard.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dashboard.Data
 {
@@ -12,5 +12,7 @@ namespace Dashboard.Data
 
             base.OnModelCreating(db);
         }
+        public DbSet<RssFeed> RssFeeds { get; set; }
+        public DbSet<RssArticle> RssArticles { get; set; }
     }
 }

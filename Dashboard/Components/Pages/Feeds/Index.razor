@@ -1,0 +1,33 @@
+﻿@using Dashboard.Data.Models
+@using Dashboard.Data.Services
+
+@page "/feeds"
+@inject RssService rssService
+
+<PageTitle>Feeds</PageTitle>
+
+<h1>Feeds</h1>
+
+<p>Enter RSS Feed Url</p>
+<InputText @bind-Value="feedUrl" />
+<button @onclick="LoadRssFeed">Load Feed</button>
+
+@if (rssFeed is not null)
+{
+    <p>Display feed data...</p>
+}
+
+
+@code {
+    private RssFeed? rssFeed { get; set; }
+    private string feedUrl { get; set; } = "";
+
+    private async Task LoadRssFeed()
+    {
+        if(string.IsNullOrEmpty(feedUrl)) return;
+
+        rssFeed = await rssService.GetFeedFromUrl(feedUrl);
+
+        var test = 1;
+    }
+}

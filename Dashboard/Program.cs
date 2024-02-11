@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Dashboard.Components;
 using Dashboard.Data;
+using Dashboard.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddDbContextFactory<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DashboardDataContext")), ServiceLifetime.Scoped);
-
+builder.Services.AddScoped<RssService>();
 
 var app = builder.Build();
 
